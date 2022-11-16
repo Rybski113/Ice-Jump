@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let upTimerId;
     let downTimerId;
     let isJumping = true;
+    let isGoingLeft = false;
+    let isGoingRight = false;
     
 
     function createDoodler() {
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         upTimerId = setInterval(function() {
             doodlerBottomSpace += 20
             doodler.style.bottom = doodlerBottomSpace + 'px'
-            if (doodlerBottomSpace > 350) {
+            if (doodlerBottomSpace > startPoint + 200) {
                 fall()
             }
         }, 30)
@@ -101,12 +103,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     function control(e) {
         if (e.key === 'ArrowLeft') {
-            // move left
+            moveLeft()
         } else if (e.key === "ArrowRight") {
             // move right
         } else if (e.key === "ArrowUp") {
             //move straight
         }
+    }
+
+    function moveLeft() {
+        isGoingLeft = true;
     }
 
     function start() {
